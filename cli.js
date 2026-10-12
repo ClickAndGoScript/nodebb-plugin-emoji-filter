@@ -39,7 +39,9 @@ async function main() {
 
 	const db = require(path.join(nodebbDir, 'src', 'database'));
 	await db.init();
-	try {
+	// the DB is deliberately not closed: other plugins' hooks (e.g. action:plugins.firehook) still query it
+	// asynchronously and would fail with "session has ended"; process.exit below closes everything
+	{
 		const meta = require(path.join(nodebbDir, 'src', 'meta'));
 		const plugins = require(path.join(nodebbDir, 'src', 'plugins'));
 		await meta.configs.init();
@@ -56,8 +58,6 @@ async function main() {
 		winston.info(result === 'skipped' ?
 			'[emoji-filter] nothing to do (lists unchanged, emoji not rebuilt). Use --force to redo.' :
 			`[emoji-filter] done (${result}).`);
-	} finally {
-		await db.close();
 	}
 
 	if (flag('--build')) {
