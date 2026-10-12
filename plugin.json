@@ -2,6 +2,7 @@
   "id": "nodebb-plugin-emoji-filter",
   "library": "./library.js",
   "hooks": [
-    { "hook": "static:app.load", "method": "init", "priority": 100 }
+    { "hook": "static:app.load", "method": "init", "priority": 100 },
+    { "hook": "filter:admin.notices", "method": "adminNotices" }
   ]
 }
