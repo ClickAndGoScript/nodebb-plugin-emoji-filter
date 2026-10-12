@@ -1,0 +1,14 @@
+{
+  "name": "nodebb-plugin-emoji-filter",
+  "version": "1.0.0",
+  "description": "Removes blocked emoji from the nodebb-plugin-emoji build output after each emoji rebuild",
+  "main": "library.js",
+  "license": "MIT",
+  "keywords": ["nodebb", "plugin", "emoji", "filter"],
+  "nbbpm": {
+    "compatibility": "^4.0.0"
+  },
+  "peerDependencies": {
+    "nodebb-plugin-emoji": "*"
+  }
+}
